@@ -56,7 +56,7 @@ app.use(cors(corsOptions));
 
 // Tell express to use the specified directory as the
 // root directory for your web site
-app.use(express.static(path.join(__dirname, 'dist/nefi-solutions')));
+app.use(express.static(path.join(__dirname, 'dist/floral')));
 
 // Tell express to map the default route ('/') to the index route
 app.use('/', index);
@@ -67,7 +67,7 @@ app.use("/flowers", flowerRoutes);
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/nefi-solutions/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/floral/index.html'));
 });
 
 mongoose
