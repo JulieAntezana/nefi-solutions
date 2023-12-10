@@ -5,7 +5,7 @@ pipeline {
         stage('Clone') {
             steps {
                 echo 'Cloning the repository...'
-                git 'https://github.com/JulieAntezana/nefi-solutions.git' // Replace with your GitHub repo URL
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/JulieAntezana/nefi-solutions.git']]])
             }
         }
 
@@ -19,10 +19,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'npm run build && npm server.js'
+                sh 'npm run build && node server.js'
             }
         }
 
+        // Uncomment the stages below once the previous stages are working correctly
         // stage('Test') {
         //     steps {
         //         echo 'Running tests...'
