@@ -54,9 +54,14 @@ app.get('*', (req, res) => {
 });
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/floral", { useNewUrlParser: true })
+  .connect(process.env.URI, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Connection failed: " + err));
+
+// mongoose
+//   .connect("mongodb://127.0.0.1:27017/floral", { useNewUrlParser: true })
+//   .then(() => console.log("Connected to MongoDB"))
+//   .catch((err) => console.log("Connection failed: " + err));
   
 // Define the port address and tell express to use this port
 const port = process.env.PORT || '3000';
