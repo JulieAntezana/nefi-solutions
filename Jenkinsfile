@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
+        stage('Build') {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'URI')]) {
@@ -36,13 +36,13 @@ pipeline {
             }
         }
 
-        // Uncomment the stages below once the previous stages are working correctly
-        // stage('Test') {
-        //     steps {
-        //         echo 'Running tests...'
-        //         sh 'npm run test'
-        //     }
-        // }
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'ng test --include src/app/home/home.component.spec.ts'
+            }
+        }
+
 
         // stage('Deploy') {
         //     steps {
