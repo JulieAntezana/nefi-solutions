@@ -12,11 +12,15 @@ pipeline {
         stage('Install') {
             steps {
                 echo 'Installing dependencies...'
-                withEnv(["PATH+NODEJS=${tool 'NodeJS'}/bin"]) {
+                // Define the NodeJS tool installation name (e.g., "NodeJS")
+                def nodeJSHome = tool 'NodeJS'
+                // Add NodeJS bin directory to PATH
+                withEnv(["PATH+NODEJS=${nodeJSHome}/bin"]) {
                     sh 'npm install'
                 }
             }
         }
+
 
         stage('Build') {
             steps {
