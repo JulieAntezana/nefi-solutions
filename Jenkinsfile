@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        // Define the NodeJS tool with the same name as configured in Jenkins
+        nodejs 'NodeJS'
+    }
+
     stages {
         stage('Clone') {
             steps {
@@ -12,15 +17,9 @@ pipeline {
         stage('Install') {
             steps {
                 echo 'Installing dependencies...'
-                // Define the NodeJS tool installation name (e.g., "NodeJS")
-                def nodeJSHome = tool 'NodeJS'
-                // Add NodeJS bin directory to PATH
-                withEnv(["PATH+NODEJS=${nodeJSHome}/bin"]) {
-                    sh 'npm install'
-                }
+                sh 'npm install'
             }
         }
-
 
         stage('Build') {
             steps {
