@@ -26,7 +26,9 @@ describe('HomeComponent', () => {
 
   it('should not have any applied styles', () => {
     const styles = window.getComputedStyle(fixture.nativeElement);
+    console.log('Applied Styles:', styles);
     // Check that there are no applied styles (since your CSS file is empty)
     expect(styles.length).toBe(0);
-  });
+});
+
 });
