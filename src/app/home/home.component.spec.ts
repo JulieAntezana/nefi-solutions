@@ -6,10 +6,6 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeAll(() => {
-    TestBed.initTestEnvironment([], { suppressAngularStabilityTestZone: true });
-  });
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent],
