@@ -54,7 +54,7 @@ app.get('*', (req, res) => {
 });
 
 mongoose
-  .connect(process.env.MONGODB_CREDENTIALS, { useNewUrlParser: true })
+  .connect(process.env.URI, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Connection failed: " + err));
 

@@ -25,25 +25,12 @@ pipeline {
             }
         }
 
-        // stage('Build') {
-        //     steps {
-        //         script {
-        //             withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'MONGODB_CREDENTIALS')]) {
-        //                 // Use MONGODB_CREDENTIALS in your MongoDB connection configuration
-        //                 // Example: sh "mongo --uri=${MONGODB_CREDENTIALS}"
-        //             }
-        //         }
-        //     }
-        // }
-
         stage('Build and Test') {
             steps {
-                echo 'Building the application...'
-                sh 'npm run build && node server.js'
                 script {
-                    withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'MONGODB_CREDENTIALS')]) {
-                        // Use MONGODB_CREDENTIALS in your MongoDB connection configuration
-                        sh "mongo --uri=${MONGODB_CREDENTIALS}"
+                    withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'URI')]) {
+                        echo 'Building and testing the application...'
+                        sh 'npm run build && node server.js'
                     }
                 }
             }
