@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'MONGODB_CREDENTIALS')]) {
-                        // Use MONGODB_CREDENTIALS in your MongoDB connection configuration
-                        // Example: sh "mongo --uri=${MONGODB_CREDENTIALS}"
+                        // Use URI in your MongoDB connection configuration
+                        // Example: sh "mongo --uri=${URI}"
                     }
                 }
             }
@@ -42,8 +42,8 @@ pipeline {
                 sh 'npm run build && node server.js'
                 script {
                     withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'MONGODB_CREDENTIALS')]) {
-                        // Use MONGODB_CREDENTIALS in your MongoDB connection configuration
-                        sh "mongo --uri=${MONGODB_CREDENTIALS}"
+                        // Use URI in your MongoDB connection configuration
+                        sh "mongo --uri=${URI}"
                     }
                 }
             }
