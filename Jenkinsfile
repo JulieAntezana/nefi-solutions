@@ -5,6 +5,7 @@ pipeline {
         stage('Clone') {
             steps {
                 echo 'Cloning the repository...'
+                # git branch: 'main', url: 'https://github.com/JulieAntezana/nefi-solutions.git'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/JulieAntezana/nefi-solutions.git']]])
             }
         }
@@ -12,7 +13,9 @@ pipeline {
         stage('Install') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'npm install'
+                withEnv(["PATH+NODEJS=${tool 'NodeJS'}/bin"]) {
+                    sh 'npm install'
+                }
             }
         }
 
