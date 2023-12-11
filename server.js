@@ -53,6 +53,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/floral/index.html'));
 });
 
+console.log('MongoDB URI:', process.env.URI);
+
 mongoose
   .connect(process.env.URI, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB"))
