@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        MONGODB_CREDENTIALS = credentials('your-mongodb-credentials-id')
+        MONGODB_CREDENTIALS = credentials('mongodb-atlas-credentials')
     }
 
     tools {
@@ -28,7 +28,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'mongobd-atlas-credentials', variable: 'MONGODB_CREDENTIALS')]) {
+                    withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'MONGODB_CREDENTIALS')]) {
                         // Use MONGODB_CREDENTIALS in your MongoDB connection configuration
                         // Example: sh "mongo --uri=${MONGODB_CREDENTIALS}"
                     }
@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build and Test') {
             steps {
                 echo 'Building the application...'
                 sh 'npm run build && node server.js'
@@ -45,6 +45,7 @@ pipeline {
                         // Use MONGODB_CREDENTIALS in your MongoDB connection configuration
                         sh "mongo --uri=${MONGODB_CREDENTIALS}"
                     }
+                }
             }
         }
 
