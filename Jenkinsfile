@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     environment {
+        sh 'echo $USER'  // Print the Jenkins user
+        sh 'echo $PATH'  // Print the PATH environment variable
         MONGODB_CREDENTIALS = credentials('mongodb-atlas-credentials')
     }
 
