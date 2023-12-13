@@ -2,8 +2,6 @@ pipeline {
     agent any
 
     environment {
-        sh 'echo $USER'  // Print the Jenkins user
-        sh 'echo $PATH'  // Print the PATH environment variable
         MONGODB_CREDENTIALS = credentials('mongodb-atlas-credentials')
     }
 
@@ -13,6 +11,19 @@ pipeline {
     }
 
     stages {
+        stage('Print Environment') {
+            steps {
+                script {
+                    echo 'Printing environment information...'
+                    sh 'echo $USER'  // Print the Jenkins user
+                    sh 'echo $PATH'  // Print the PATH environment variable
+                    sh 'chromium --version'
+                    sh 'whoami'
+                    sh 'id'
+                }
+            }
+        }
+
         stage('Clone') {
             steps {
                 echo 'Cloning the repository...'
@@ -45,7 +56,6 @@ pipeline {
                 sh 'ng test --include src/app/home/home.component.spec.ts'
             }
         }
-
 
         // stage('Deploy') {
         //     steps {
