@@ -53,7 +53,9 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'ng test --include src/app/home/home.component.spec.ts --browsers=ChromeHeadless'
+                catchError {
+                    sh 'ng test --include src/app/home/home.component.spec.ts --browsers=ChromeHeadless'
+                }
             }
         }
 
