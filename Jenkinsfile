@@ -66,7 +66,7 @@ pipeline {
                 echo 'Running unit tests...'
                 catchError {
                     // Run unit tests
-                    sh 'ng test --include src/app/home/home.component.spec.ts'
+                    sh 'ng test --include src/app/home/home.component.spec.ts --browsers=ChromeHeadless --single-run'
                 }
             }
         }
@@ -76,7 +76,7 @@ pipeline {
                 echo 'Running integration tests...'
                 catchError {
                     // Run integration tests (modify this command based on your project structure)
-                    sh 'npm run integrate1 --include e2e/integration-test.e2e.spec.ts --browsers=ChromeHeadless'
+                    sh 'npm run integration-test --include e2e/integration-test.e2e.spec.ts --browsers=ChromeHeadless'
                 }
             }
         }
