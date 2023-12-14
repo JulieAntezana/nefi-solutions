@@ -55,7 +55,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'URI')]) {
                         echo 'Building and testing the application...'
                         sh 'npm run build'
-                        sh 'nohup node server.js &'
+                        sh 'nohup node server.js > /dev/null 2>&1 & disown'
                     }
                 }
             }
