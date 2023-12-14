@@ -55,7 +55,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'URI')]) {
                         echo 'Building and testing the application...'
                         sh 'npm run build'
-                        sh 'npm start > /dev/null 2>&1 &'
+                        sh 'nohup node server.js & disown'
                     }
                 }
             }
@@ -76,7 +76,7 @@ pipeline {
                 echo 'Running integration tests...'
                 catchError {
                     // Run integration tests (modify this command based on your project structure)
-                    sh 'npm run integration-test'
+                    sh 'npm run integrate1 --include e2e/integrate1.spec.ts --browsers=ChromeHeadless''
                 }
             }
         }
