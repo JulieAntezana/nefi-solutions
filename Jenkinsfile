@@ -10,6 +10,15 @@ pipeline {
         nodejs 'NodeJS'
     }
 
+    post {
+        failure {
+            emailext subject: "Build Failed: ${currentBuild.fullDisplayName}",
+                      body: "Build failed. Please check the Jenkins console for details.",
+                      recipientProviders: [culprits(), requestor()],
+                      to: "dev1@nefisolutions.com"
+        }
+    }
+
     stages {
         stage('Print Environment') {
             steps {
@@ -34,6 +43,8 @@ pipeline {
         stage('Install') {
             steps {
                 echo 'Installing dependencies...'
+                // Install Node.js dependencies including Selenium WebDriver
+                sh 'npm install selenium-webdriver --save-dev'
                 sh 'npm install'
             }
         }
@@ -50,20 +61,59 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Unit Test') {
             steps {
-                echo 'Running tests...'
+                echo 'Running unit tests...'
                 catchError {
+                    // Run unit tests
                     sh 'ng test --include src/app/home/home.component.spec.ts --browsers=ChromeHeadless'
                 }
             }
         }
 
-        // stage('Deploy') {
-        //     steps {
-        //         echo 'Deploying the application...'
-        //         // Add your deployment commands here
-        //     }
-        // }
+        stage('Integration Test') {
+            steps {
+                echo 'Running integration tests...'
+                catchError {
+                    // Run integration tests (modify this command based on your project structure)
+                    sh 'npm run integration-test'
+                }
+            }
+        }
+
+        stage('Acceptance Test') {
+            steps {
+                echo 'Running acceptance tests...'
+                catchError {
+                    // Run acceptance tests (modify this command based on your project structure)
+                    sh 'npm run acceptance-test'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+                // This step will pause the pipeline and wait for manual input to proceed
+                input message: 'All tests passed. Deploy now?'
+
+                // Stop the currently running Node.js server (if any)
+                sh 'pkill -f "node server.js" || true'
+
+                // Copy the built application files to the deployment directory
+                sh 'cp -r dist/* /path/to/deployment/directory'
+
+                // Install production dependencies (if needed)
+                sh 'npm install --production --prefix /path/to/deployment/directory'
+
+                // Start the Node.js server in the deployment directory
+                sh 'nohup node /path/to/deployment/directory/server.js &'
+
+                // Additional cleanup steps
+                sh 'rm -rf /path/to/temporary/files'
+                sh 'echo "Cleanup completed."'
+            }
+        }
+
     }
 }

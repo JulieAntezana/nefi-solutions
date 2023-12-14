@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "integration-test": "node tests/integration-test.js",
     "start:server": "nodemon server.js"
   },
   "private": true,
@@ -47,6 +48,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "mongoose": "^7.6.5",
+    "selenium-webdriver": "^4.16.0",
     "typescript": "^5.2.0-dev.20230807"
   }
 }

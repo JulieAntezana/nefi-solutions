@@ -8,6 +8,9 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var dotenv = require('dotenv');
 
+// Load environment variables from .env file
+dotenv.config();
+
 // Routes - import the routing file to handle the default (index) route
 const index = require('./server/routes/app');
 const flowerRoutes = require('./server/routes/flowers');
