@@ -12,7 +12,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ESNext",  // Change this to CommonJS
-    "esModuleInterop": true, // Add this line
+    "allowJs": true, // Add this line
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",
