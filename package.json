@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "integration-test": "protractor protractor.conf.js",
-    "start:server": "nodemon server.js",
-    "webdriver-update": "webdriver-manager update"    
+    "start:server": "nodemon server.js",   
   },
   "private": true,
   "dependencies": {

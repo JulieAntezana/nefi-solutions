@@ -1,6 +1,7 @@
 // protractor.conf.js
 exports.config = {
     framework: 'jasmine',
+    directConnect: true, // enable direct connection to the browser
     specs: ['e2e/integration-test.e2e.spec.ts'], // Path to your integration test files
     capabilities: {
       browserName: 'chrome',
