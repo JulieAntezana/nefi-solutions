@@ -88,8 +88,6 @@ pipeline {
             }
         }
 
-
-
         stage('Print Environment Round 2') {
             steps {
                 script {
