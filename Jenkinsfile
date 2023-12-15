@@ -55,7 +55,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'mongodb-atlas-credentials', variable: 'URI')]) {
                         echo 'Building and testing the application...'
                         sh 'npm run build'
-                        sh 'npm start > /dev/null 2>&1 &'
+                        sh ('./node_modules/karma/bin/karma start karma.conf.js')
                     }
                 }
             }
