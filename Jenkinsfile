@@ -65,9 +65,20 @@ pipeline {
             steps {
                 script {
                     echo 'Running unit tests...'
-                    def karmaExitCode = sh(script: 'ng test --browsers=ChromeHeadless', returnStatus: true)
+
+                    // Set a shorter timeout for faster feedback in case of failure
+                    def timeoutDuration = '2m' // Set to a suitable duration (e.g., 2 minutes)
+
+                    // Run the tests with timeout
+                    def karmaExitCode = sh(script: "timeout ${timeoutDuration} ng test --browsers=ChromeHeadless", returnStatus: true)
+
+                    // Check if the tests failed or timed out
                     if (karmaExitCode != 0) {
-                        error "Unit tests failed. Exiting build."
+                        // Tests failed or timed out, exit the build with an error message
+                        error "Unit tests failed or timed out. Exiting build."
+                    } else {
+                        // Tests passed, continue with the pipeline
+                        echo 'Unit tests passed.'
                     }
                 }
             }
