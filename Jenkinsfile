@@ -93,11 +93,15 @@ pipeline {
             steps {
                 echo 'Running integration tests...'
                 catchError {
+                    // Run webdriver-manager update to ensure the binaries are available
+                    sh 'npm run webdriver-update'
+
                     // Run integration tests (modify this command based on your project structure)
-                    sh 'npm run integration-test --include e2e/integration-test.e2e.spec.ts'
+                    sh 'npm run integration-test --include e2e/integration-test.e2e.spec.ts --browsers=ChromeHeadless'
                 }
             }
         }
+
 
         stage('Acceptance Test') {
             steps {
