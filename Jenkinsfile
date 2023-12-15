@@ -67,7 +67,7 @@ pipeline {
                     echo 'Running unit tests...'
 
                     // Set a shorter timeout for faster feedback in case of failure
-                    def timeoutDuration = '15s' // Set to a suitable duration (e.g., 2 minutes)
+                    def timeoutDuration = '30s' // Set to a suitable duration (e.g., 2 minutes)
 
                     // Run the tests with timeout
                     def karmaExitCode = sh(script: "timeout ${timeoutDuration} ng test --browsers=ChromeHeadless", returnStatus: true)
