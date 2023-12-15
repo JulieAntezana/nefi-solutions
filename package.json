@@ -51,5 +51,6 @@
     "mongoose": "^7.6.5",
     "selenium-webdriver": "^4.16.0",
     "typescript": "^5.2.0-dev.20230807"
-  }
+  },
+  "type": "module"
 }
