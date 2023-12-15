@@ -72,6 +72,10 @@ pipeline {
                     // Run the tests with timeout
                     def karmaExitCode = sh(script: "timeout ${timeoutDuration} ng test --browsers=ChromeHeadless", returnStatus: true)
 
+                    // Kill Node.js and Karma processes explicitly
+                    sh 'pkill -f "node server.js" || true' // Kill the Node.js server
+                    sh 'pkill -f "chrome-remote-interface" || true' // Kill the Karma server
+
                     // Check if the tests failed or timed out
                     if (karmaExitCode != 0) {
                         // Tests failed or timed out, exit the build with an error message
@@ -83,6 +87,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Print Environment Round 2') {
             steps {
