@@ -67,7 +67,7 @@ pipeline {
                     echo 'Running unit tests...'
 
                     // Set a shorter timeout for faster feedback in case of failure
-                    def timeoutDuration = '2m' // Set to a suitable duration (e.g., 2 minutes)
+                    def timeoutDuration = '15s' // Set to a suitable duration (e.g., 2 minutes)
 
                     // Run the tests with timeout
                     def karmaExitCode = sh(script: "timeout ${timeoutDuration} ng test --browsers=ChromeHeadless", returnStatus: true)
@@ -83,21 +83,8 @@ pipeline {
                     } else {
                         // Tests passed, continue with the pipeline
                         echo 'Unit tests passed.'
+                        sh 'pkill -f ChromeHeadless'
                     }
-                }
-            }
-        }
-
-        stage('Print Environment Round 2') {
-            steps {
-                script {
-                    echo 'Printing environment information...'
-                    sh 'echo $USER'  // Print the Jenkins user
-                    sh 'echo $PATH'  // Print the PATH environment variable
-                    sh 'chromium --version'
-                    sh 'chromedriver --version'
-                    sh 'whoami'
-                    sh 'id'
                 }
             }
         }
