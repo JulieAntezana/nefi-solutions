@@ -94,7 +94,7 @@ pipeline {
                 echo 'Running integration tests...'
                 catchError {
                     // Run integration tests (modify this command based on your project structure)
-                    sh 'npm run integration-test --include e2e/integration-test.e2e.spec.ts --browsers=ChromeHeadless'
+                    sh 'npx wdio wdio.conf.js'
                 }
             }
         }
