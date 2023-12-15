@@ -1,4 +1,5 @@
-import { browser } from 'protractor';
+const { browser } = require('protractor');
+// import { browser } from 'protractor';
 
 // e2e/integration-test.e2e.spec.ts
 describe('My App', function() {
