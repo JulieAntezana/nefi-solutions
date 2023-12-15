@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "integration-test": "node tests/integration-test.js",
+    "integration-test": "node e2e/integration-test.e2e.spec.ts",
     "start:server": "nodemon server.js"
   },
   "private": true,
