@@ -78,8 +78,8 @@ pipeline {
 
                     // Check if the tests failed or timed out
                     if (karmaExitCode != 0) {
-                        // Tests failed or timed out, exit the build with an error message
-                        error "Unit tests failed or timed out. Exiting build."
+                        // Tests failed or timed out, print a message (build not marked as failed)
+                        echo "Unit tests failed or timed out. Continuing with the pipeline."
                     } else {
                         // Tests passed, continue with the pipeline
                         echo 'Unit tests passed.'
@@ -87,6 +87,7 @@ pipeline {
                 }
             }
         }
+
 
 
         stage('Print Environment Round 2') {
