@@ -1,7 +1,7 @@
 // protractor.conf.js
 exports.config = {
     framework: 'jasmine',
-    specs: ['e2e/**/*.spec.js'], // Path to your integration test files
+    specs: ['e2e/integration-test.e2e.spec.ts'], // Path to your integration test files
     capabilities: {
       browserName: 'chrome',
       chromeOptions: {

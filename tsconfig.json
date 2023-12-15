@@ -11,9 +11,9 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ESNext",  // Change this to CommonJS
-    "allowJs": true, // Add this line
-    "useDefineForClassFields": false,
+    "module": "ES2022",  // Change this to CommonJS
+    // "allowJs": true, // Add this line
+    // "useDefineForClassFields": false,
     "lib": [
       "ES2022",
       "dom"

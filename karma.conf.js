@@ -9,6 +9,7 @@ module.exports = function (config) {
         require('@angular-devkit/build-angular/plugins/karma')
       ],
       client: {
+        clearContext: false,
         jasmine: {
           // Jasmine-specific configuration, if needed
         }
@@ -20,7 +21,7 @@ module.exports = function (config) {
       reporters: ['progress', 'kjhtml'],
       port: 9876,
       colors: true,
-      autoWatch: true,
+      autoWatch: false,
       browsers: ['Chrome'],
       singleRun: true,
       restartOnFileChange: true

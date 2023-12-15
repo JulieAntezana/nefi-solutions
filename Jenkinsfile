@@ -63,10 +63,12 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                echo 'Running unit tests...'
-                catchError {
-                    // Run unit tests
-                    sh 'ng test --include src/app/home/home.component.spec.ts --browsers=ChromeHeadless'
+                script {
+                    echo 'Running unit tests...'
+                    def karmaExitCode = sh(script: 'ng test --browsers=ChromeHeadless', returnStatus: true)
+                    if (karmaExitCode != 0) {
+                        error "Unit tests failed. Exiting build."
+                    }
                 }
             }
         }
