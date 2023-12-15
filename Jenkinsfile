@@ -27,6 +27,7 @@ pipeline {
                     sh 'echo $USER'  // Print the Jenkins user
                     sh 'echo $PATH'  // Print the PATH environment variable
                     sh 'chromium --version'
+                    sh 'chromedriver --version'
                     sh 'whoami'
                     sh 'id'
                 }
