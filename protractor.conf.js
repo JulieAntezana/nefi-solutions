@@ -12,6 +12,7 @@ exports.config = {
     baseUrl: 'http://34.174.97.158:4200/', // Update with your application URL
     jasmineNodeOpts: {
       showColors: true,
+      defaultTimeoutInterval: 10000,
     },
   };
   
