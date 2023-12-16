@@ -1,7 +1,7 @@
 exports.config = {
     runner: 'local',
     specs: [
-        './e2e/**/*.e2e.spec.js'
+        './e2e/**/*.krecorder.js',
     ],
     capabilities: [{
         maxInstances: 5,
@@ -9,7 +9,7 @@ exports.config = {
     }],
     logLevel: 'info',
     bail: 0,
-    baseUrl: 'http://34.174.97.158:4200/',
+    baseUrl: 'http://nefi-solutions.firebaseapp.com/',
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
