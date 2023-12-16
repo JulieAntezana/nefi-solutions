@@ -14,7 +14,7 @@ pipeline {
         failure {
             emailext subject: "Build Failed: ${currentBuild.fullDisplayName}",
                       body: "Build failed. Please check the Jenkins console for details.",
-                      recipientProviders: [jenknotifications@nefisolutions.com],
+                      recipientProviders: [[culprits(), requestor()]],
                       to: "dev1@nefisolutions.com"
         }
     }
