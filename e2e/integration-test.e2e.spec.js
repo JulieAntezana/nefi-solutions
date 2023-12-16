@@ -2,7 +2,7 @@
 
 describe('My App', () => {
     it('should navigate to the home page', async () => {
-      await browser.url('http://nefi-solutions.firebaseapp.com/'); // navigate to the home page
+      await browser.url('http://localhost:4200/'); // navigate to the home page
       const title = await browser.getTitle();
       expect(title).toEqual('Floral Arrangements');
     }).timeout(30000);
