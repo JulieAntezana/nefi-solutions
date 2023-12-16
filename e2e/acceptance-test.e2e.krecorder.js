@@ -2,7 +2,7 @@ var assert = require('assert');
 
 describe('katalon', function() {
 
-	it('should do something', function() {
+	it('should do something', async function() {
 		browser.url('http://localhost:4200/flowers/NaN');
 		$('//input[@type=\'text\']').click();
 		$('//img[@alt=\'Petals Surprise\']').click();

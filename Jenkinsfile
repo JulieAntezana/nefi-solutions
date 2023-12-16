@@ -89,19 +89,6 @@ pipeline {
             }
         }
 
-        stage('Run Headless Tests') {
-            steps {
-                script {
-                    // Start virtual X server
-                    sh 'Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &'
-                    // Set the display variable
-                    sh 'export DISPLAY=:99'
-                    // Run Katalon Recorder tests with xvfb-run
-                    sh 'xvfb-run path/to/katalon-recorder.sh -s path/to/your/test-suite.html -o path/to/output/result.html'
-                }
-            }
-        }
-
         stage('Integration Test') {
             steps {
                 echo 'Running integration tests...'
@@ -117,7 +104,7 @@ pipeline {
                 echo 'Running acceptance tests...'
                 catchError {
                     // Run acceptance tests (modify this command based on your project structure)
-                    sh 'npm run acceptance-test'
+                    sh 'node e2e/acceptance-test.e2e.krecorder.js'
                 }
             }
         }

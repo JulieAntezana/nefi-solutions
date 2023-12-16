@@ -1,7 +1,9 @@
 exports.config = {
     runner: 'local',
     specs: [
+        './e2e/**/*.spec.js',
         './e2e/**/*.krecorder.js',
+
     ],
     capabilities: [{
         maxInstances: 5,
